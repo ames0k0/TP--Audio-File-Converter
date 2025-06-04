@@ -1,7 +1,7 @@
 import pytest
 
 from main import (
-    NonSequentialCallExp,
+    NonSequentialFuncCallExp,
     UnsupportedFileTypeExp,
     UnsupportedExportFileFormatExp
 )
@@ -35,7 +35,7 @@ class TestConverter:
     @pytest.mark.parametrize(
         ("filepath", "export_file_format", "exception"),
         (
-            ("samples/BAK.wav", "mp3", NonSequentialCallExp),
+            ("samples/BAK.wav", "mp3", NonSequentialFuncCallExp),
             ("samples/BAK.wav", "wav", UnsupportedExportFileFormatExp),
         )
     )
@@ -52,7 +52,7 @@ class TestConverter:
         """
         converter = Converter()
 
-        if exception is not NonSequentialCallExp:
+        if exception is not NonSequentialFuncCallExp:
             converter.set_input(filepath=filepath)
 
         with pytest.raises(exception):
@@ -61,8 +61,8 @@ class TestConverter:
     @pytest.mark.parametrize(
         ("filepath", "export_file_format", "exception", "task_id"),
         (
-            ("samples/BAK.wav", "mp3", NonSequentialCallExp, 1),
-            ("samples/BAK.wav", "mp3", NonSequentialCallExp, 2),
+            ("samples/BAK.wav", "mp3", NonSequentialFuncCallExp, 1),
+            ("samples/BAK.wav", "mp3", NonSequentialFuncCallExp, 2),
         )
     )
     def test_convert(

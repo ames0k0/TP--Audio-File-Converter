@@ -4,7 +4,7 @@ import filetype
 import pydub
 
 
-class NonSequentialCallExp(Exception):
+class NonSequentialFuncCallExp(Exception):
     pass
 class UnsupportedFileTypeExp(Exception):
     pass
@@ -43,7 +43,7 @@ class Converter:
 
     def set_output(self, export_file_format: str):
         if not self._filepath:
-            raise NonSequentialCallExp("FilePath is not set, use: `set_input()`")
+            raise NonSequentialFuncCallExp("FilePath is not set, use: `set_input()`")
 
         self._export_file_format: str = str(export_file_format).lower()
 
@@ -57,9 +57,9 @@ class Converter:
     def convert(self) -> bytes:
         """Returns converted `wav` to `mp3` as bytes"""
         if not self._filepath:
-            raise NonSequentialCallExp("FilePath is not set, use: `set_input()`")
+            raise NonSequentialFuncCallExp("FilePath is not set, use: `set_input()`")
         if not self._export_file_format:
-            raise NonSequentialCallExp("FilePath is not set, use: `set_output()`")
+            raise NonSequentialFuncCallExp("FilePath is not set, use: `set_output()`")
 
         audio_export = io.BytesIO()
 
