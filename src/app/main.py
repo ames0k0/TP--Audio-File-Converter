@@ -1,12 +1,12 @@
+import os
 import io
 
-import filetype
 import pydub
 
 
 class NonSequentialFuncCallExp(Exception):
     pass
-class UnsupportedFileTypeExp(Exception):
+class UnsupportedFileExtensionExp(Exception):
     pass
 class UnsupportedExportFileFormatExp(Exception):
     pass
@@ -16,8 +16,8 @@ class Converter:
     """Audio file converter
     """
 
-    SUPPORTED_FILE_TYPES: tuple[str] = (
-        "audio/x-wav",
+    SUPPORTED_FILE_EXTENSIONS: tuple[str] = (
+        ".wav",
     )
     SUPPORTED_EXPORT_FILE_FORMAT: tuple[str] = (
         "mp3",
@@ -28,28 +28,34 @@ class Converter:
 
     def set_input(self, filepath: str):
         self._filepath = filepath
-        kind = filetype.guess(self._filepath)
+        file_ext = os.path.splitext(self._filepath)[1]
 
-        if not kind:
-            raise UnsupportedFileTypeExp(
-                "FileType is not supporeted, try:\n%s" % self.SUPPORTED_FILE_TYPES
+        if not file_ext:
+            raise UnsupportedFileExtensionExp(
+                "InputFileExtension is required, try:\n%s" % self.SUPPORTED_FILE_EXTENSIONS
             )
-        if kind.mime not in self.SUPPORTED_FILE_TYPES:
-            raise UnsupportedFileTypeExp(
-                "FileType(`%s`) is not supporeted, try:\n%s" % (
-                    kidn.mime, self.SUPPORTED_FILE_TYPES
+        if file_ext not in self.SUPPORTED_FILE_EXTENSIONS:
+            raise UnsupportedFileExtensionExp(
+                "InputFileExtension(`%s`) is not supporeted, try:\n%s" % (
+                    file_ext, self.SUPPORTED_FILE_EXTENSIONS
                 )
             )
+        if not os.path.isfile(self._filepath):
+            raise FileNotFoundError("InputFilePath is not valid: %s" % self._filepath)
 
     def set_output(self, export_file_format: str):
         if not self._filepath:
-            raise NonSequentialFuncCallExp("FilePath is not set, use: `set_input()`")
+            raise NonSequentialFuncCallExp("InputFilePath is not set, use: `set_input()`")
 
         self._export_file_format: str = str(export_file_format).lower()
 
+        if not self._export_file_format:
+            raise UnsupportedExportFileFormatExp(
+                "OutputExportFileFormat is required, try:\n%s" % self.SUPPORTED_EXPORT_FILE_FORMAT
+            )
         if self._export_file_format not in self.SUPPORTED_EXPORT_FILE_FORMAT:
             raise UnsupportedExportFileFormatExp(
-                "FileFormat(`%s`) is not supported, use:\n%s" % (
+                "OutputExportFileFormat(`%s`) is not supported, try:\n%s" % (
                     self._export_file_format, self.SUPPORTED_EXPORT_FILE_FORMAT,
                 )
             )
@@ -57,9 +63,9 @@ class Converter:
     def convert(self) -> bytes:
         """Returns converted `wav` to `mp3` as bytes"""
         if not self._filepath:
-            raise NonSequentialFuncCallExp("FilePath is not set, use: `set_input()`")
+            raise NonSequentialFuncCallExp("InputFilePath is not set, use: `set_input()`")
         if not self._export_file_format:
-            raise NonSequentialFuncCallExp("FilePath is not set, use: `set_output()`")
+            raise NonSequentialFuncCallExp("OuputExportFileFormat is not set, use: `set_output()`")
 
         audio_export = io.BytesIO()
 
