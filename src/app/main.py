@@ -1,15 +1,19 @@
+import io
+
 import pydub
 
 
-def converter():
-    audio_segment = pydub.AudioSegment.from_wav(
-        "./samples/BAK.wav"
-    )
-    audio_segment.export(
-        "./samples/BAK.mp3",
-        format="mp3",
-    )
+def converter(filepath: str) -> bytes:
+    audio_export = io.BytesIO()
+
+    audio_segment = pydub.AudioSegment.from_wav(file=filepath)
+    audio_segment.export(audio_export, format="mp3")
+
+    return audio_export.getvalue()
 
 
 if __name__ == "__main__":
-    converter()
+    output: bytes = converter(filepath="./samples/BAK.wav")
+
+    with open("./samples/BAK.mp3", "wb") as ftwb:
+        ftwb.write(output)
