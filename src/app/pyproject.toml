@@ -1,0 +1,9 @@
+[project]
+name = "afc"
+version = "0.0.1"
+description = "Audio file converter"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "pydub>=0.25.1",
+]
