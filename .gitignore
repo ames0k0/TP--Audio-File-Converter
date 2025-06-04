@@ -1,2 +1,9 @@
+# drawio
 *.bkp
+
+# python
+*.py[cod]
+__pycache__
+
+# uv
 .python-version
