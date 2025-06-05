@@ -23,6 +23,9 @@ class Converter:
     SUPPORTED_EXPORT_FILE_FORMATS: Sequence[str] = (
         "mp3",
     )
+    MAP_FILE_FORMAT_TO_FILE_MIMETYPE: dict[str, str] = {
+        "mp3": "audio/mpeg",
+    }
 
     _filepath: str = ""
     _export_file_format: str = ""
@@ -45,9 +48,6 @@ class Converter:
             raise FileNotFoundError("InputFilePath is not valid: %s" % self._filepath)
 
     def set_output(self, export_file_format: str):
-        if not self._filepath:
-            raise NonSequentialFuncCallExp("InputFilePath is not set, use: `set_input()`")
-
         self._export_file_format: str = str(export_file_format).lower()
 
         if not self._export_file_format:

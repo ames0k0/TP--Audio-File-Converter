@@ -2,7 +2,7 @@ import os
 import textwrap
 import argparse
 
-from afc import Converter
+from converter import Converter
 
 
 if __name__ == "__main__":
@@ -25,7 +25,7 @@ if __name__ == "__main__":
     if not all((args.input, args.output)):
         parser.print_help()
         exit(1)
-    
+
     converter = Converter()
 
     try:
