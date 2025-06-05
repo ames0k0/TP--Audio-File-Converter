@@ -48,7 +48,7 @@ class TestConverter:
         """Checks for export file format
 
         Supported export file formats are:
-            `SUPPORTED_EXPORT_FILE_FORMAT`
+            `SUPPORTED_EXPORT_FILE_FORMATS`
         """
         converter = Converter()
 

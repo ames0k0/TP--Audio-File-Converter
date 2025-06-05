@@ -1,5 +1,6 @@
 import os
 import io
+from typing import Sequence
 
 import pydub
 
@@ -16,10 +17,10 @@ class Converter:
     """Audio file converter
     """
 
-    SUPPORTED_FILE_EXTENSIONS: tuple[str] = (
+    SUPPORTED_FILE_EXTENSIONS: Sequence[str] = (
         ".wav",
     )
-    SUPPORTED_EXPORT_FILE_FORMAT: tuple[str] = (
+    SUPPORTED_EXPORT_FILE_FORMATS: Sequence[str] = (
         "mp3",
     )
 
@@ -51,12 +52,12 @@ class Converter:
 
         if not self._export_file_format:
             raise UnsupportedExportFileFormatExp(
-                "OutputExportFileFormat is required, try:\n%s" % self.SUPPORTED_EXPORT_FILE_FORMAT
+                "OutputExportFileFormat is required, try:\n%s" % self.SUPPORTED_EXPORT_FILE_FORMATS
             )
-        if self._export_file_format not in self.SUPPORTED_EXPORT_FILE_FORMAT:
+        if self._export_file_format not in self.SUPPORTED_EXPORT_FILE_FORMATS:
             raise UnsupportedExportFileFormatExp(
                 "OutputExportFileFormat(`%s`) is not supported, try:\n%s" % (
-                    self._export_file_format, self.SUPPORTED_EXPORT_FILE_FORMAT,
+                    self._export_file_format, self.SUPPORTED_EXPORT_FILE_FORMATS,
                 )
             )
 
