@@ -2,7 +2,7 @@ import os
 import textwrap
 import argparse
 
-from main import Converter
+from afc import Converter
 
 
 if __name__ == "__main__":

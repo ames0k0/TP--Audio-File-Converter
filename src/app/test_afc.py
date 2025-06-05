@@ -1,11 +1,11 @@
 import pytest
 
-from main import (
+from afc import (
     NonSequentialFuncCallExp,
     UnsupportedFileExtensionExp,
     UnsupportedExportFileFormatExp
 )
-from main import Converter
+from afc import Converter
 
 
 class TestConverter:
