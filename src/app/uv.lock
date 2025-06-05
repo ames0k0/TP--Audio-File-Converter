@@ -4,7 +4,7 @@ requires-python = ">=3.12"
 [[package]]
 name = "afc"
 version = "0.5.0"
-source = { virtual = "." }
+source = { editable = "." }
 dependencies = [
     { name = "pydub" },
 ]
