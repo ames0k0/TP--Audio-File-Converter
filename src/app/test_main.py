@@ -2,7 +2,7 @@ import pytest
 
 from main import (
     NonSequentialFuncCallExp,
-    UnsupportedFileTypeExp,
+    UnsupportedFileExtensionExp,
     UnsupportedExportFileFormatExp
 )
 from main import Converter
@@ -14,7 +14,7 @@ class TestConverter:
         ("filepath", "exception"),
         (
             ("samples/WrongFilePath.wav", FileNotFoundError),
-            ("samples/BAK.mp3", UnsupportedFileTypeExp),
+            ("samples/BAK.mp3", UnsupportedFileExtensionExp),
         )
     )
     def test_input(
