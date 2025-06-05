@@ -30,18 +30,24 @@ class Converter:
     _filepath: str = ""
     _export_file_format: str = ""
 
+    def _join_sequence(self, items: Sequence[str]) -> str:
+        return ", ".join(items)
+
     def set_input(self, filepath: str):
         self._filepath = filepath
         file_ext = os.path.splitext(self._filepath)[1]
 
         if not file_ext:
             raise UnsupportedFileExtensionExp(
-                "InputFileExtension is required, try:\n%s" % self.SUPPORTED_FILE_EXTENSIONS
+                "InputFileExtension is required, try: %s" % self._join_sequence(
+                    self.SUPPORTED_FILE_EXTENSIONS
+                )
             )
         if file_ext not in self.SUPPORTED_FILE_EXTENSIONS:
             raise UnsupportedFileExtensionExp(
-                "InputFileExtension(`%s`) is not supporeted, try:\n%s" % (
-                    file_ext, self.SUPPORTED_FILE_EXTENSIONS
+                "InputFileExtension: `%s` is not supporeted, try: %s" % (
+                    file_ext,
+                    self._join_sequence(self.SUPPORTED_FILE_EXTENSIONS),
                 )
             )
         if not os.path.isfile(self._filepath):
@@ -52,12 +58,17 @@ class Converter:
 
         if not self._export_file_format:
             raise UnsupportedExportFileFormatExp(
-                "OutputExportFileFormat is required, try:\n%s" % self.SUPPORTED_EXPORT_FILE_FORMATS
+                "OutputExportFileFormat is required, try: %s" % self._join_sequence(
+                    self.SUPPORTED_EXPORT_FILE_FORMATS
+                )
             )
         if self._export_file_format not in self.SUPPORTED_EXPORT_FILE_FORMATS:
             raise UnsupportedExportFileFormatExp(
-                "OutputExportFileFormat(`%s`) is not supported, try:\n%s" % (
-                    self._export_file_format, self.SUPPORTED_EXPORT_FILE_FORMATS,
+                "OutputExportFileFormat: `%s` is not supported, try: %s" % (
+                    self._export_file_format,
+                    self._join_sequence(
+                        self.SUPPORTED_EXPORT_FILE_FORMATS
+                    ),
                 )
             )
 
