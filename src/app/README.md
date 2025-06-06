@@ -21,4 +21,10 @@ uv run ruff check src tests
 uv run ruff format src tests
 ```
 
-<p align="center"><img src="../../_readme/Diagram-WUI.drawio.png" /></p>
+#### Deploy
+```
+uv pip compile pyproject.toml > requirements.txt
+docker buildx build --no-cache -t afc:0.5.0 .
+```
+
+<p align="center"><img src="../../_readme/Diagram-App.drawio.png" /></p>
