@@ -5,4 +5,4 @@
 - [v0.4.0: CLI](https://github.com/ames0k0/TP--Audio-File-Converter/tree/cli)
 - [v0.5.0: WUI: Backend: FastAPI](https://github.com/ames0k0/TP--Audio-File-Converter/tree/wui_backend_fastapi)
 
-<p align="center"><img src="./_readme/Diagram-WUI.drawio.png" /></p>
+<p align="center"><img src="./_readme/Diagram-WUI_BACKEND_DRF.drawio.png" /></p>
