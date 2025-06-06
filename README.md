@@ -1,3 +1,3 @@
 # Audio file converter
 
-<p align="center"><img src="./_readme/Diagram-CLI.drawio.png" /></p>
+<p align="center"><img src="./_readme/Diagram-WUI.drawio.png" /></p>
