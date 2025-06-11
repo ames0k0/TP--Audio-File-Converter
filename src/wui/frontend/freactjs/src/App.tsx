@@ -1,36 +1,56 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 
 function App() {
-  // TODO (ames0k0): load from backend
-  const SUPPORTED_FILE_EXTENSIONS: string[] = [
-    "WAV",
-  ];
-  const SUPPORTED_EXPORT_FILE_FORMATS: string[] = [
-    "mp3",
-  ];
-
+  const [sfe, setSFE] = useState<string[]>([]);
+  const [eff, setEFF] = useState<string[]>([]);
   const [file, setFile] = useState<File | null>(null);
-  const [eff, setEFF] = useState<string | null>(null);
+  const [seff, setSEFF] = useState<string | null>(null);
   const [status, setStatus] = useState("initial");
 
+  useEffect(() => {
+    fetchMetadata();
+  }, []);
+
   const handleEFFChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    if (SUPPORTED_EXPORT_FILE_FORMATS.includes(e.target.value)) {
-      setEFF(e.target.value);
+    setSEFF(null);
+    if (eff.includes(e.target.value)) {
+      setSEFF(e.target.value);
     }
   };
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFile(null);
     if (e.target.files) {
       setFile(e.target.files[0]);
     }
   };
 
+  const fetchMetadata = async () => {
+    try {
+      const result = await fetch(
+        "http://0.0.0.0:8000/audio/convert",
+        {
+          method: "GET",
+        }
+      );
+      if (result.status !== 200) {
+        setStatus("fail>" + (await result.json())["detail"])
+        return;
+      }
+      const data = await result.json()
+      setSFE(data["SUPPORTED_FILE_EXTENSIONS"].map((item: string) => item.toUpperCase()));
+      setEFF(data["SUPPORTED_EXPORT_FILE_FORMATS"].map((item: string) => item.toUpperCase()));
+    } catch (error) {
+      setStatus("fail>" + "Network Error");
+    }
+  }
+
   const submitFile = async () => {
     setStatus("initial");
 
-    if (!eff) {
+    if (!seff) {
       setStatus("fail>`Export File Format` is not selected");
       return;
     }
@@ -43,7 +63,7 @@ function App() {
       formData.append("file", file);
 
       const result = await fetch(
-        "http://0.0.0.0:8000/audio/convert?export_file_format=" + eff,
+        "http://0.0.0.0:8000/audio/convert?export_file_format=" + seff.toLowerCase(),
         {
           method: "POST",
           body: formData,
@@ -87,7 +107,7 @@ function App() {
       <div className="flex items-center justify-center w-full">
         <select onChange={handleEFFChange} id="countries" className="m-2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
           <option defaultValue={"US"}>Select Export File Format</option>
-          {SUPPORTED_EXPORT_FILE_FORMATS.map((file_format) =>
+          {eff.map((file_format) =>
            <option key={file_format} value={file_format}>{file_format}</option>
           )}
         </select>
@@ -100,7 +120,7 @@ function App() {
                   <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"/>
                 </svg>
                 <p className="mb-2 text-sm text-gray-500 dark:text-gray-400"><span className="font-semibold">Click to upload</span> or drag and drop</p>
-                <p className="text-xs text-gray-500 dark:text-gray-400">Supported input files: {SUPPORTED_FILE_EXTENSIONS}</p>
+                <p className="text-xs text-gray-500 dark:text-gray-400">Supported input files: {sfe}</p>
             </div>
             <input id="dropzone-file" type="file" className="hidden" onChange={handleFileChange} />
         </label>

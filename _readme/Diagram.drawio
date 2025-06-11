@@ -959,7 +959,7 @@
     </mxGraphModel>
   </diagram>
   <diagram name="WUI_FRONTEND_REACTJS" id="9kRsjmjRb8n3ejjU49sc">
-    <mxGraphModel dx="1345" dy="1943" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="2562" dy="2397" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="PhPgr4dSnUWvsngsLaJ7-0" />
         <mxCell id="PhPgr4dSnUWvsngsLaJ7-1" parent="PhPgr4dSnUWvsngsLaJ7-0" />
@@ -1240,8 +1240,8 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="c02LlnyG15XyAG97vDKX-1" value="Frontend" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="PhPgr4dSnUWvsngsLaJ7-1" vertex="1">
-          <mxGeometry x="30" y="-140" width="70" height="30" as="geometry" />
+        <mxCell id="c02LlnyG15XyAG97vDKX-1" value="&lt;b&gt;Frontend&lt;/b&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="PhPgr4dSnUWvsngsLaJ7-1" vertex="1">
+          <mxGeometry x="25" y="-140" width="80" height="30" as="geometry" />
         </mxCell>
         <mxCell id="c02LlnyG15XyAG97vDKX-9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="PhPgr4dSnUWvsngsLaJ7-1" source="c02LlnyG15XyAG97vDKX-4" target="c02LlnyG15XyAG97vDKX-6" edge="1">
           <mxGeometry relative="1" as="geometry" />
