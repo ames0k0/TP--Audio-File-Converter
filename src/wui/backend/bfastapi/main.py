@@ -5,11 +5,19 @@ from tempfile import NamedTemporaryFile
 from pydantic import BaseModel
 from starlette.concurrency import run_in_threadpool
 from fastapi import FastAPI, HTTPException, Response, Query, UploadFile, File, status
+from fastapi.middleware.cors import CORSMiddleware
 
 from converter import Converter
 
 
 app = FastAPI(title="Audio file converter")
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 
 class AudioConverterGetOut(BaseModel):
@@ -59,9 +67,10 @@ async def post_audio_converter(
 
     return Response(
         content=converted_audio_file,
-        media_type=converter.MAP_FILE_FORMAT_TO_FILE_MIMETYPE[export_file_format],
+        media_type=converter.MAP_FILE_FORMAT_TO_FILE_MIMETYPE[export_file_format.lower()],
         headers={
             "Content-Disposition": f'attachment; filename="{filename}.{export_file_format}"',
+            "Access-Control-Expose-Headers": "Content-Disposition",
         },
     )
 
