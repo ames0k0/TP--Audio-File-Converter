@@ -6,3 +6,5 @@ React + TypeScript + Vite + Tailwind CSS
 npm install
 npm run dev
 ```
+
+<p align="center"><img src="./_readme/reactjs.png" /></p>
