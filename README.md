@@ -6,4 +6,4 @@
 - [v0.2.0: API](https://github.com/ames0k0/TP--Audio-File-Converter/tree/api)
 - [v0.1.0: APP](https://github.com/ames0k0/TP--Audio-File-Converter/tree/app)
 
-<p align="center"><img src="./_readme/Diagram-WUI_BACKEND_DRF.drawio.png" /></p>
+<p align="center"><img src="./_readme/Diagram-WUI_FRONTEND_REACTJS.drawio.png" /></p>
