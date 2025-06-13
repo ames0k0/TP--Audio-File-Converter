@@ -43,7 +43,7 @@ function App() {
       setSFE(data["SUPPORTED_FILE_EXTENSIONS"].map((item: string) => item.toUpperCase()));
       setEFF(data["SUPPORTED_EXPORT_FILE_FORMATS"].map((item: string) => item.toUpperCase()));
     } catch (error) {
-      setStatus("fail>" + "Network Error");
+      setStatus("fail>" + "Backend: Network Error");
     }
   }
 
@@ -89,7 +89,7 @@ function App() {
       link.click();
       URL.revokeObjectURL(objectUrl);
     } catch (error) {
-      setStatus("fail>" + "Network Error");
+      setStatus("fail>" + "Backend: Network Error");
     }
   }
   return (
