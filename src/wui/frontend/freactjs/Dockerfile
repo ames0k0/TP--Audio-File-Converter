@@ -4,7 +4,7 @@ WORKDIR /freactjs
 
 COPY . .
 
-RUN npm install
+RUN npm ci
 
 ARG VITE_HOST=0.0.0.0
 ARG VITE_PORT=5175
