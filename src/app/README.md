@@ -24,7 +24,7 @@ uv run ruff format src tests
 #### Deploy
 ```
 uv pip compile pyproject.toml > requirements.txt
-docker buildx build --no-cache -t afc:0.5.0 .
+docker buildx build --no-cache -t afc__api:0.5.0 .
 ```
 
 <p align="center"><img src="../../_readme/Diagram-API_TEST.drawio.png" /></p>

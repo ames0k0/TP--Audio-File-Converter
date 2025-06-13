@@ -1,4 +1,4 @@
-FROM afc:0.5.0
+FROM afc__api:0.5.0
 
 WORKDIR /bdrf
 
