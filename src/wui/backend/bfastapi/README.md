@@ -3,7 +3,7 @@
 #### Deploy
 ```
 uv pip compile pyproject.toml > requirements.txt
-docker buildx build --no-cache -t bfastapi:0.1.0 .
+docker buildx build --no-cache -t afc__backend_fastapi:0.1.0 .
 ```
 
 #### Run
