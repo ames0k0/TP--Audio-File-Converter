@@ -1,0 +1,24 @@
+services:
+  afc__api:
+    build:
+      context: ../app
+      dockerfile: Dockerfile
+    image: afc__api:0.5.0
+  afc__backend_drf:
+    build:
+      context: backend/bdrf
+      dockerfile: Dockerfile
+    image: afc__backend_drf:0.1.0
+    ports:
+      - 8000:8000
+    depends_on:
+      - afc__api
+  afc__frontend_reactjs:
+    build:
+      context: frontend/freactjs
+      dockerfile: Dockerfile
+    image: afc__frontend_reactjs:0.1.0
+    ports:
+      - 5173:5173
+    depends_on:
+      - afc__backend_drf
