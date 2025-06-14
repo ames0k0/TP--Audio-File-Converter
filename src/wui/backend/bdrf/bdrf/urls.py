@@ -90,5 +90,5 @@ class AudioConverterView(APIView):
 
 
 urlpatterns = staticfiles_urlpatterns() + [
-    path("", AudioConverterView.as_view()),
+    path("audio/convert", AudioConverterView.as_view()),
 ]

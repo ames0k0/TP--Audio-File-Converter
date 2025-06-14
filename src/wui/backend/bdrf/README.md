@@ -21,7 +21,7 @@ curl \
     -X POST \
     -F file=@BAK.wav \
     -H "Content-Type: multipart/form-data" \
-    http://127.0.0.1:8000/?export_file_format=mp3 \
+    http://127.0.0.1:8000/audio/convert?export_file_format=mp3 \
     > BAK.mp3
 ```
 
