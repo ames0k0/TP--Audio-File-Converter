@@ -1,4 +1,5 @@
 # Audio file converter
+- [v0.8.0: WUI](https://github.com/ames0k0/TP--Audio-File-Converter/tree/wui)
 - [v0.7.0: WUI: Frontend: ReactJS](https://github.com/ames0k0/TP--Audio-File-Converter/tree/wui_frontend_reactjs)
 - [v0.6.0: WUI: Backend: DRF](https://github.com/ames0k0/TP--Audio-File-Converter/tree/wui_backend_drf)
 - [v0.5.0: WUI: Backend: FastAPI](https://github.com/ames0k0/TP--Audio-File-Converter/tree/wui_backend_fastapi)
